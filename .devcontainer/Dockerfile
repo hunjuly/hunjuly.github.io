@@ -1,14 +1,12 @@
-# [Choice] Debian OS version (use bullseye on local arm64/Apple Silicon): bullseye, buster
-ARG VARIANT=bullseye
-FROM mcr.microsoft.com/vscode/devcontainers/jekyll:0-${VARIANT}
+FROM node:16
 
-# [Choice] Node.js version: none, lts/*, 16, 14, 12, 10
-ARG NODE_VERSION="none"
-RUN if [ "${NODE_VERSION}" != "none" ]; then su vscode -c "umask 0002 && . /usr/local/share/nvm/nvm.sh && nvm install ${NODE_VERSION} 2>&1"; fi
+RUN apt update
+RUN apt upgrade -y
 
-# [Optional] Uncomment this section to install additional OS packages.
-# RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-#     && apt-get -y install --no-install-recommends <your-package-list-here>
+# color prompt
+RUN echo 'PS1="\[\033[32m\]\w\[\033[00m\] "' >> ~/.bashrc
+RUN echo "alias ls='ls --color=auto'" >> ~/.bashrc
+RUN echo "alias l='ls --color=auto -lA'" >> ~/.bashrc
 
-# [Optional] Uncomment this line to install global node packages.
-# RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && npm install -g <your-package-here>" 2>&1
+RUN apt-get install -y ruby-full
+RUN gem install bundler jekyll
