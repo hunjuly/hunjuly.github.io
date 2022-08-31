@@ -51,6 +51,8 @@ OOP는 도메인을 객체 단위로 분석/구현하는 프로그래밍 기법�
 > if-else 구문으로 프로그래밍을 하면 아무리 함수로 분리한다 해도 if-else가 중첩되는 등의 문제가 있을 것이다. OOP vs 알고리즘 사례를 찾아보자
 > https://www.geeksforgeeks.org/brief-overview-comparison-of-object-oriented-programming-from-c-to-java/
 
+> https://www.geeksforgeeks.org/differences-between-procedural-and-object-oriented-programming/
+
 이런 OOP의 5가지의 원칙이 있다.
 
 > SOLID 원칙 소개
