@@ -1,3 +1,9 @@
+---
+layout: post
+title:  "좋은 코드란 무엇인가?"
+date:   2022-12-03 16:12:03 +0000
+categories: jekyll update
+---
 # 좋은 코드란 무엇인가?
 
 좋은 코드란 무엇일까?
