@@ -12,3 +12,4 @@ RUN apt-get install -y ruby-full
 RUN gem install public_suffix -v 4.0.7
 RUN gem install rouge -v 3.30.0
 RUN gem install bundler jekyll
+RUN bundle install

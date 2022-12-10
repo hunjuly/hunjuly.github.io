@@ -11,12 +11,12 @@
         "version": "2.0.0",
         "tasks": [
             {
-                "label": "Serve",
+                "label": "1.Serve",
                 "type": "shell",
                 "command": "bundle exec jekyll serve --livereload",
             },
             {
-                "label": "Build",
+                "label": "2.Build",
                 "type": "shell",
                 "command": "bundle exec jekyll build",
                 "group": {
