@@ -6,7 +6,6 @@
 
 title: Manner Code
 email: hello@mannercode.com
-description: Manners Maketh Code
 # baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://mannercode.com" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  mannercode
