@@ -8,7 +8,6 @@
     "settings": {},
     "extensions": [],
     "forwardPorts": [
-        // Jekyll server
         4000,
         // Live reload server
         35729
