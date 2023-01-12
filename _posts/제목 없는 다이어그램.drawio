@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-01-12T12:17:13.184Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15" version="20.8.4" etag="GGHhmHDDDCNHi3MV95Fs" type="github">
+<mxfile host="app.diagrams.net" modified="2023-01-12T12:31:24.662Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15" version="20.8.4" etag="rcuPsrxpDqHa9yj58w18" type="github">
   <diagram id="kAxy7GY6eTMZanumjE_k" name="페이지-1">
     <mxGraphModel dx="1158" dy="714" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -41,6 +41,12 @@
           <mxGeometry x="-0.2333" y="6" relative="1" as="geometry">
             <mxPoint x="-1" as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="CN9grJ1vndZCzqCMUK1b-18" value="&amp;lt;그림 2-1&amp;gt; 4개의 화살표 이미지" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="128" y="500" width="342" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="CN9grJ1vndZCzqCMUK1b-19" value="&amp;lt;그림 2-2&amp;gt; &amp;nbsp;1개의 화살표 이미지를 회전" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="578" y="500" width="342" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
