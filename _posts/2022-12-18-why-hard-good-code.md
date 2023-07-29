@@ -136,19 +136,27 @@ Buffer와 File외에 Pipe 같은 다른 스트림이 추가되어야 한다면 �
 마틴 파울러가 이야기하는 뇌의 구조가 바뀌는 순간이 나에게도 있었다.\
 어떻게 하면 아래의 코드를 개선할 수 있을까를 고민하다가 객체지향의 기본을 깨닫게 됐다.
 
-```typescript
-// switch나 if 같은 조건문은 절차식의 특징인데 아래 코드가 그 전형이다.
-switch (lang) {
-  case "korean":
-    "안녕";
-    break;
-  case "english":
-    "hello";
-    break;
-  default:
-    "unknown";
-    break;
+``` js
+getHello(lang:Language){
+    const hello = ""
+
+    // switch나 if 같은 조건문은 절차식의 특징이다.
+    switch (lang) {
+    case "korean":
+        hello = "안녕"
+        break
+    case "english":
+        hello = "hello"
+        break
+    default:
+        hello = "unknown"
+        break
+    }
+
+    return hello
 }
+
+getHello(lang)
 ```
 
 이 코드의 문제는 언어 별로 다르게 동작해야 하는 모든 곳에 이런 조건문이 생긴다는 것이다.\
@@ -179,7 +187,6 @@ class English : Language {
 
 const language = new Korean();
 
-// 사용하는 코드는 변하지 않는다.
 language.hello();
 ```
 
@@ -250,7 +257,7 @@ language.hello();
 4개의 화살표 모양은 동일하고 방향만 다르다.\
 이 때 4개의 화살표를 구현하는 방법이 두 가지 있다.
 
-<img src="/assets/refs/arrows.png"/>
+![두 개의 화살표](/assets/refs/arrows.png)
 
 하나는 <그림 2-1>처럼 4개의 화살표 이미지를 사용하는 것이다.
 
@@ -279,7 +286,7 @@ language.hello();
 그러나 여기에서는 '상/하/좌/우' 방향을 나타내는 각각 다른 의미의 화살표이며 화살표의 모양이 동일한 것은 그저 우연일 뿐이다.\
 그래서 <그림 2-3>처럼 이미지가 달라지면 회전시켜서 구현하는 방법은 맞지 않게 된다.
 
-<img src="/assets/refs/arrow-type2.png" />
+![두 개의 화살표](/assets/refs/arrow-type2.png)
 
 '상/하/좌/우'는 방향을 나타내는 것이니까 회전시켜서 표현하는 것이 맞다고 생각할지 모른다.\
 그러나 처음 '상/하/좌/우' 요구사항을 정의했을 누군가가 제일 먼저 떠올린 것은 키보드 구석에 고정되어 있는 4개의 방향키였을 것이다.\
