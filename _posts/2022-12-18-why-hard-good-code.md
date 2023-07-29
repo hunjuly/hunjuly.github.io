@@ -57,7 +57,7 @@ title: "2. 좋은 코드의 어려움"
 이 때 `InputStream`을 제공하는 `BufferInputStream`이나 `FileInputStream`을 새로 개발할 뿐, `InputStream`을 사용하는 코드는 아무런 변경이 없다.\
 이것은 stream을 입력받는 매커니즘을 재사용하는 것이다. **사용하는 코드는 아무런 변경이 없다는 것이 중요하다.**
 
-**다이어그램 좀 더 보강해라**
+<!-- **다이어그램 좀 더 보강해라**
 ```plantuml
 @startuml
 interface InputStream {
@@ -75,15 +75,15 @@ class FileInputStream {
 BufferInputStream --|> InputStream
 FileInputStream --|> InputStream
 @enduml
-```
+``` -->
 
 만약 절차식이고 `func InputStream(buffer)`이라는 함수가 있다면, 이것을 변경해서 `func InputStream(buffer, file)`이라는 함수로 만들어야 했을 것이다.\
 Buffer와 File외에 Pipe 같은 다른 스트림이 추가되어야 한다면 어떨까?\
 절차식 함수라면 전달인자(argument)가 점점 늘어나고 복잡해지거나 `func InputStream()`의 어딘가에 조건문이 들어가는 변경을 피하기가 어려울 것이다.
 
-```
+<!-- ```
 절차식일 경우 UML
-```
+``` -->
 
 지금은 이 설명을 이해하기 어려워도 괜찮다. 나중에 더 자세히 설명할 기회가 있을 것이다.
 
@@ -250,6 +250,8 @@ language.hello();
 4개의 화살표 모양은 동일하고 방향만 다르다.\
 이 때 4개의 화살표를 구현하는 방법이 두 가지 있다.
 
+<img src="/assets/refs/arrows.png"/>
+
 하나는 <그림 2-1>처럼 4개의 화살표 이미지를 사용하는 것이다.
 
 ```html
@@ -267,8 +269,6 @@ language.hello();
 <View src="arrow.png" rotate="90" />
 <View src="arrow.png" rotate="180" />
 ```
-
-<img src="/assets/refs/arrows.png"/>
 
 어떤 방법이 옳은 것일까?\
 <그림 2-1>의 방법은 코드를 읽기 쉽다.\
