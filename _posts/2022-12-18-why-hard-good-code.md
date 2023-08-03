@@ -343,3 +343,39 @@ back-end 담당자는 왜 하나의 테이블을 주장했을까?
 객체지향은 어렵지만, 충분한 노력과 한 순간의 아이디어로 사고의 전환을 이룰 수 있다. 하지만 요구사항 해석은 사고의 전환 외에도 많은 노력과 경험을 필요로 한다. 이는 그 어려움을 극복하지 못하고 노력을 포기하는 프로그래머들이 많다는 사실에서도 알 수 있다. 그러나 요구사항 해석을 제대로 이해하게 되면, 소프트웨어를 만들 때 느끼는 막연한 고민과 답답함이 사라지면서, 코딩이 재미있게 느껴지게 될 것이다.
 
 코딩을 배우는 이유를 묻는 사람들에게 대부분의 사람들은 '논리적인 사고에 도움이 된다'는 막연한 답변을 한다. 하지만 내 생각에는, 코딩을 통해 얻을 수 있는 것은 문제의 본질을 통찰하고 해결하는 능력이다. 이는 단순히 논리적인 사고를 넘어서는 것으로, 복잡한 문제를 분석하고 이해하며, 그에 따른 해결책을 구현하는 능력을 말한다.
+
+
+```ts
+interface ThirstQuenchable {
+  quenchThirst(method: string, amount?: number): void;
+}
+
+class Water implements ThirstQuenchable {
+  quenchThirst(){
+      this.drink()
+  }
+}
+
+class Ringer implements ThirstQuenchable {
+  quenchThirst(){
+      this.inject()
+  }
+}
+
+class Player {
+  private thirsty:ThirstQuenchable
+
+  onThirsty(){
+    this.quenchThirst()
+  }
+}
+
+
+// 예제 사용
+const beverage: Beverage = new Beverage(500);
+const moisturizer: Moisturizer = new Moisturizer();
+const player: Player = new Player("지수");
+
+player.quenchThirstWith(beverage, 'drink', 250); // 음료 250ml를 마셨습니다.
+player.quenchThirstWith(moisturizer, 'apply'); // 수분 크림을 바릅니다.
+```

@@ -5,8 +5,13 @@
     "build": {
         "dockerfile": "Dockerfile"
     },
-    "settings": {},
-    "extensions": [],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "hediet.vscode-drawio"
+            ]
+        }
+    },
     "forwardPorts": [
         4000,
         // Live reload server
