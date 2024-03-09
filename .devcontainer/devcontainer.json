@@ -1,21 +1,25 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.205.2/containers/jekyll
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.122.1/containers/docker-existing-dockerfile
 {
-    "name": "hunjuly.github.io",
-    "build": {
-        "dockerfile": "Dockerfile"
-    },
+    "name": "${containerWorkspaceFolderBasename}",
+    "context": ".",
+    "dockerFile": "Dockerfile",
+    "runArgs": [
+        "--name",
+        "${containerWorkspaceFolderBasename}-vscode"
+    ],
     "customizations": {
         "vscode": {
             "extensions": [
-                "hediet.vscode-drawio"
-            ]
+                "ms-vscode.live-server",
+                "jebbs.plantuml"
+            ],
+            "settings": {
+                "livePreview.portNumber": 3030,
+                "remote.downloadExtensionsLocally": true,
+                "plantuml.server": "https://www.plantuml.com/plantuml",
+                "plantuml.render": "PlantUMLServer"
+            }
         }
-    },
-    "forwardPorts": [
-        4000,
-        // Live reload server
-        35729
-    ],
-    "postCreateCommand": "bundle install"
+    }
 }
