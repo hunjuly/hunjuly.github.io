@@ -1,13 +1,21 @@
 ---
 layout: post
-title: "Understanding Object-Oriented Programming"
+title:  "Understanding Object-Oriented Programming"
 ---
 
-Object-oriented programming is a programming paradigm that manages cohesion and dependency by grouping data and functions into a single 'object'.
+Numerous articles and videos explain object-oriented programming (OOP). However, even after going through such materials, it's not easy to grasp what object orientation really is. Why is that?
+
+The most important thing when learning OOP is a shift in thinking. Martin Fowler says the best way to achieve this shift in thinking is to work for some time in an environment where OOP is well-structured. However, it's not easy to find such an environment because there aren't many developers who properly understand OOP.
+
+> Object-oriented programming is a programming paradigm that groups data and functions into a single 'object' to increase cohesion and reduce dependencies.
+
+The commonly discussed principles such as encapsulation, information hiding, polymorphism, and inheritance are concepts derived from this essence.
+
+In this article, we will explore what the essence of OOP is and aim to help bring about a shift in thinking by improving code from procedural to object-oriented.
 
 ## Introduction to Procedural Code
 
-Let's write a function that reads a document from a buffer and outputs it character by character.
+First, let's write a function that reads a document from a buffer and outputs it character by character.
 
 ```ts
 /* Read from buffer */
@@ -26,7 +34,9 @@ function printDocument(buffer: string) {
 }
 ```
 
-Now, let's add a feature to read a document from a file and output it character by character.
+### Adding functionality to procedural code
+
+Let's add the functionality to read a document from a file and output it character by character.
 
 ```ts
 function main() {
@@ -61,11 +71,11 @@ function printDocument(doc: string | File) {
 }
 ```
 
-This is a typical procedural code. One characteristic of procedural code is the frequent use of if statements.
+This is typical procedural programming. One of the characteristics of procedural programming is the frequent appearance of if statements.
 
 ## Problems with Procedural Code
 
-What if we need to add a feature to read from a REST API? Not only the main() function but also the printDocument() function would need to be modified.
+What if we need to add the functionality to read from a REST API here? Not only the main() function but also the printDocument() function needs to be modified.
 
 ```ts
 function main() {
@@ -113,7 +123,11 @@ function printDocument(doc: string | File | HttpRequest) {
 }
 ```
 
-It's not a problem if we only need to modify the printDocument() function. But what if there are other functions besides printDocument()? The number of functions to be modified increases accordingly. Real projects often involve longer and more complex code than this. In such environments, finding and modifying all related functions is not an easy task.
+It's not a problem if we're only modifying the printDocument() function like now. However, if there are other functions besides printDocument()? The number of functions that need to be modified increases accordingly.
+
+### Problems in nested functions
+
+In real projects, code is often longer and more complex than this. In such an environment, it's not easy to find and modify all related functions.
 
 ```ts
 function main() {
@@ -125,7 +139,7 @@ function main() {
     const file = new File("test.txt")
     printDocument(file)
     updateDocument(file, "new contents")
-    // To clear, you need to know the rule that you have to close first.
+    // You need to know the rule that you have to close before clearing.
     file.close()
     clearDocument(file)
 }
@@ -177,11 +191,13 @@ function printDocument(doc: string | File) {
 }
 ```
 
-## Improving Procedural Code #1
+if statements increase code complexity and make development difficult. However, removing if statements leads to even greater side effects.
 
-It's not easy to find and modify the if statements that determine the document type in all related functions. Then, is there a way to avoid if statements?
+## How to Improve Procedural Code
 
-We can consider breaking down printDocument().
+### Dividing functions
+
+As a way to avoid if, we can think of a method to subdivide printDocument().
 
 ```ts
 function main() {
@@ -211,7 +227,9 @@ function printFileDocument(doc: File) {
 }
 ```
 
-However, usually, connected functions are nested and called as follows.
+At first glance, it seems like a good approach.
+
+However, usually, linked functions are nested and called as shown below.
 
 ```ts
 function main() {
@@ -223,33 +241,29 @@ function main() {
 }
 
 function printBufferWeeklyReport(doc: string){
-    /* Code to generate report */
+    /* Code to generate report*/
     ...
 
     printBufferDocument(report)
 }
 
 function printFileWeeklyReport(doc: File){
-    /* Code to generate report */
+    /* Code to generate report*/
     ...
 
     printFileDocument(report)
 }
 ```
 
-The if statements have definitely disappeared. However, to avoid if, we end up repeating the 'code to generate report'. In this case, it would be better to use if.
+The if statement has certainly disappeared. However, to avoid if, we end up repeating the 'code to generate report'. In that case, it's better to use if.
 
-If statements increase code complexity and make development difficult. However, removing if statements causes even greater side effects.
+### Delivering execution code
 
-Is if unavoidable?
+The fundamental reason why if cannot be removed from printDocument() is because the main() function only delivers the data needed for printDocument(), but not the way to use that data.
 
-## Improving Procedural Code #2
+So, printDocument() has to determine the code to execute based on the type of data.
 
-The fundamental reason why if cannot be removed from printDocument() is that the main() function only passes the data needed for printDocument(), but not how to use that data.
-
-Therefore, printDocument() needs to determine which code to execute based on the type of data.
-
-What if we pass the code to be executed along with the data?
+Then, what if we also deliver the code to be executed?
 
 ```ts
 function main() {
@@ -285,13 +299,13 @@ function printDocument(doc: any, getChar: Func) {
 }
 ```
 
-Although the main() function has become more complex, printDocument() no longer needs if statements and doesn't need to be modified regardless of the format that comes in.
+Although the main() function has become more complex, printDocument() doesn't need if statements and doesn't need to be changed regardless of the format that comes.
 
-Now, how can we clean up the main() function?
+Now, how can we neatly organize the main() function?
 
 ## Object-Oriented Code
 
-To clean up the main() function, we can use classes.
+To neatly organize the main() function, we can use classes.
 
 ```ts
 function main() {
@@ -350,15 +364,15 @@ class FileDocument implements DocumentReadable {
 }
 ```
 
-In the object-oriented approach, there are no if statements in printDocument() to determine the document type. When an object is initially created in main(), everything needed is determined. printDocument() only needs to use the given object.
+In the object-oriented approach above, there is no if statement in printDocument() to determine the document type. When an object is first created in main(), everything needed is determined. printDocument() just needs to use the given object.
 
-> If you see if statements in the code, consider whether it is procedural and whether it can be improved with an object-oriented approach.
+> If you see if statements in your code, consider whether this is procedural? And whether it can be improved to object-oriented.
 
-As mentioned earlier, procedural code only passes the data needed for printDocument(), but not the specific method (function) to use that data. The object-oriented approach groups data and functions that use the data into an object and passes it. This is the biggest and most prominent difference.
+Earlier, I mentioned that procedural programming only delivers the data needed for printDocument(), but not the specific method (function) to use that data. The object-oriented approach bundles data and the functions that use that data into an object and delivers it. This is the biggest and most prominent difference.
 
-## Characteristics of Good Objects
+## Characteristics of a Good Object
 
-Let's represent the code as a class diagram.
+Let's express the code as a class diagram.
 
 {% plantuml %}
 @startuml
@@ -395,33 +409,34 @@ DocumentReadable <|.. FileDocument
 ### Separation of Concerns
 
 The `printDocument()` function only uses the `DocumentReadable` interface.\
-`BufferDocument` and `FileDocument` only provide their own functionality according to the `DocumentReadable` interface.
+`BufferDocument` and `FileDocument` only provide functionality according to the `DocumentReadable` interface.
 
-In other words, `printDocument()`, `BufferDocument`, and `FileDocument` only know about the `DocumentReadable` interface and are unaware of each other. This means that as long as the `DocumentReadable` interface doesn't change, there is no need to modify each class or function.
+In other words, what `printDocument()`, `BufferDocument`, and `FileDocument` know is only the `DocumentReadable` interface, and they do not know about each other. This means that as long as the `DocumentReadable` interface doesn't change, each class or function doesn't need to be modified.
 
-To rephrase, if the interface is not changed, modifying each part does not affect the other parts. This is how object-oriented programming enables incremental development. This mechanism of separating the interface and implementation naturally leads to high cohesion and low coupling.
+To rephrase, if the interface isn't changed, no matter how each part is modified, it doesn't affect other parts. This is how object-oriented programming enables incremental development. This mechanism of separating interface and implementation naturally results in high cohesion and low coupling.
 
-> When accustomed to procedural thinking, it's common to see inexperience in aggregating functionality and focusing only on that part. This appears not only in code but also in daily work such as task assignment and collaboration.
+> If you're accustomed to procedural thinking, you may find this method of concentrating functionality and focusing only on that part unfamiliar. This appears not only in code but also in daily tasks such as dividing work and collaborating.
 >
-> For example, front-end and back-end developers define a REST API and proceed with their own development. Then, an error occurs in the back-end that doesn't satisfy the previously defined REST API. Debugging reveals that modifying the REST API and the front-end code is simpler than modifying the back-end code. The back-end developer requests the front-end developer to modify the code, and the front-end developer willingly agrees.
+> For example, a frontend developer and a backend developer define a REST API and proceed with development individually. Then, an error occurs in the backend that doesn't satisfy the previously defined REST API. Debugging shows that it's simpler to change the REST API and modify the code in the frontend than to modify the code in the backend. The backend developer requests the frontend developer to modify the code, and the frontend developer readily agrees.
 >
-> Abandoning the principles established when designing the REST API is a big problem. Moreover, involving the front-end in the back-end's problem leads to a stronger coupling between the back-end and the front-end.
+> Abandoning the principles set when designing the REST API is a big problem. Moreover, by involving the frontend in the backend's problem, the backend and frontend become that much more tightly coupled.
 >
-> You may wonder if such a minor change is really a big issue. It may not seem significant at the time of coding, but it becomes an obstacle when another developer tries to analyze the code later on.
+> You may wonder if such a minor change is really a big deal. It may not seem significant at the time of coding, but it becomes an obstacle when another developer tries to analyze the code after some time has passed.
 >
-> "Each person's work area should be strictly maintained."
+> "Each person's work area must be strictly adhered to."
 >
 > Developers accustomed to procedural thinking sometimes perceive this statement as selfish and cold. However, this is an extremely technical approach.
 
 ### Access Control
 
-Functions can be considered connected to each other through variables.
+Functions can be seen as connected to each other through variables.
 
-Let's think about global variables. It's commonly said that global variables should not be used. Because all functions that use a single global variable are connected to each other. In a situation where the source code exceeds 100,000 lines, how can you ensure that other functions behave according to your expected rules? This tremendously increases complexity.
+Think about global variables. It's often said that global variables shouldn't be used. Because all functions that use a single global variable are connected to each other. In a situation where the source code exceeds 100,000 lines, how can you guarantee that other functions will behave according to the rules you thought of?
+This tremendously increases complexity.
 
-> If you can't grasp the extent of the impact when modifying code, you are almost certainly creating bugs.
+> If you can't figure out how far the impact reaches when you change code, you're almost certainly creating bugs.
 
-In the diagram below, the read(), write(), change(), and reset() functions that use the count variable are connected to each other. In particular, the change() and reset() functions that modify the value have a direct impact on all other functions.
+In the diagram below, the read(), write(), change(), and reset() functions that use the count variable are connected to each other. In particular, the change() and reset() functions that change the value have a direct impact on all other functions.
 
 {% plantuml %}
 @startmindmap
@@ -433,19 +448,20 @@ In the diagram below, the read(), write(), change(), and reset() functions that 
 @endmindmap
 {% endplantuml %}
 
-On the other hand, functions that use `BufferDocument`'s `buffer` or `position` can only exist within the `BufferDocument` class. This is because the two properties (variables) are private, so external access is fundamentally blocked.
+On the other hand, the functions that use `BufferDocument`'s `buffer` or `position` can only exist within the `BufferDocument` class.
+Because the two properties (variables) are private, external access is fundamentally blocked.
 
-This is the reason why properties should not be directly exposed as public. If properties can be modified from the outside, it becomes uncertain how far the impact will reach when modifying code related to the properties. It potentially becomes no different from global variables.
+This is why properties should not be directly exposed as public. If properties can be modified from the outside, when modifying code related to the properties, it becomes impossible to know how far the impact will reach. Potentially, it becomes no different from global variables.
 
-## Application of Object-Oriented Programming
+## Application of Object Orientation
 
-The characteristics of object-oriented programming, such as managing complexity through separation of concerns and minimizing the impact of changes, influence other fields as well.
+The characteristics of object-oriented approach in managing complexity through separation of concerns and minimizing the impact of change influence other areas as well.
 
 ### Microservices Architecture
 
-MSA has many structural similarities to the object-oriented approach.
+MSA has many similarities to the object-oriented approach in terms of structure.
 
-The core of object-oriented programming is to group data and functions into a single object. In MSA, a service also groups the DB and API together, and the internal implementation and DB of each service are not exposed externally. This becomes a great advantage for maintainability and scalability by preventing internal changes of a service from affecting the outside.
+The core of object orientation is binding data and functions into a single object. In MSA, a service also bundles DB and API together for management, and the internal implementation and DB of each service are not exposed to the outside. This becomes a big advantage in maintainability and scalability while preventing internal changes of a service from affecting the outside.
 
 {% plantuml %}
 @startditaa
@@ -463,38 +479,35 @@ The core of object-oriented programming is to group data and functions into a si
 @endditaa
 {% endplantuml %}
 
-As can be seen from the fact that OOP and MSA are structurally similar, understanding and properly designing architectures like MSA would be much more difficult without a proper understanding of OOP.
+As you can see from the fact that OOP and MSA are structurally similar, if you don't properly understand OOP, it will be very difficult to understand and correctly design architectures like MSA.
 
-These days, MSA seems to be in trend. And many developers seem to be focused only on learning how to use MSA components such as API gateway, gRPC, and message broker. However, the most important and fundamental thing is a deep understanding of OOP.
+These days, MSA seems to be in trend. And many developers seem to be focusing only on learning how to use MSA components such as API gateway, gRPC, message broker, etc. However, the most basic and essential thing is a deep understanding of OOP.
 
-> OOP is at the foundation of modern software development methods.
+> OOP is at the root of modern software development methods.
 
 ### Agile Methodology
 
-The way of working where related parties such as designers, developers, and planners form a team and closely collaborate can be likened to the core principles of object-oriented programming (OOP): high cohesion and low coupling. This approach plays an important role in increasing productivity and efficiency not only in software development but also in organization structure and teamwork.
+The way of working where related people such as designers, developers, and planners form a team and collaborate closely can be likened to the high cohesion and low coupling, which are the core principles of object-oriented programming (OOP). This approach plays an important role in increasing productivity and efficiency not only in software development but also in organization composition and teamwork.
 
-The composition of an agile team itself is not identical to objects that group data and functions together. However, in an agile team, the planner produces data called requirements, and the developer implements them, which suggests a similarity in that the production and consumption entities of data are together. This can be seen in the same context as data (properties) and functions (methods) being closely related within an object.
+The composition of an agile team itself is not the same structure as an object that combines data and functions into one. However, in an agile team, the planner produces data called requirements, and the developer implements them, so there is a similarity in that the subjects of data production and consumption are together. This can be seen in the same context as data (properties) and functions (methods) being closely related within an object.
 
-On the other hand, the process of iterating incremental development, which is an important principle of agile methodology, is possible based on the separation of concerns in object-oriented design. Object-oriented programming models a system as the interaction of independent objects, allowing each object to be developed and tested individually. This helps facilitate the small-scale development and feedback incorporation that agile methodology aims for. As a result, OOP is positioned as one of the main techniques that form the foundation of agile software development.
+On the other hand, the process of repeating incremental development, which is an important principle of agile methodology, is possible based on the separation of concerns in object-oriented design. Object-oriented programming models the system as interactions of independent objects, allowing each object to be developed and tested individually. This helps facilitate the small-scale development and feedback incorporation that agile methodology aims for. As a result, OOP is establishing itself as one of the main techniques underlying agile software development.
 
 ## Conclusion
 
-This article started with the following:
+This article began like this.
 
-> Object-oriented programming is a programming paradigm that manages cohesion and dependency by grouping data and functions into a single 'object'.
+> Object-oriented programming is a programming paradigm that groups data and functions into a single 'object' to increase cohesion and reduce dependencies.
 
-That's right. Grouping data and functions into a single object is the core of object-oriented programming.
+That's right. Grouping data and functions into a single object is the core of object orientation.
+However, many articles or videos explaining OOP explain what encapsulation, information hiding, polymorphism, and inheritance of OOP are. These four basic principles of OOP are only guidelines for grouping data and functions. The most basic and essential thing is the grouping of data and functions.
 
-However, many articles or videos explaining OOP describe what encapsulation, information hiding, polymorphism, and inheritance are in OOP. These four basic principles of OOP are merely guidelines for grouping data and functions. The most basic and essential thing is the grouping of data and functions.
+Then, can an object exist with only data? Conversely, can an object exist with only functions?
+Even if you write code using class syntactically, it is not an object. An object is meaningful only when state (properties) and behavior (methods) are together.
 
-Then, can there be an object that only contains data? Conversely, can there be an object that only contains functions?
+You may feel like you know something after reading this article now. However, it will not be concretized until you actually change your code to object-oriented.
+Much consideration and practice are needed to determine what good code is.
 
-Even if you write code using the class syntax, it is not an object. An object is meaningful only when it has both state (properties) and behavior (methods).
+OOP is at the root of modern development methodologies. If you don't deeply understand OOP, it will be difficult to use modern development methods such as TDD, DDD, Agile, MSA correctly even if you study them. This is the reason why there are many projects that have applied MSA but few success cases.
 
-You may feel like you have learned something after reading this article. However, until you actually try to convert your code to object-oriented, it will likely remain a vague feeling of something that might work.
-
-It requires a lot of contemplation and practice to understand what good code is.
-
-OOP is at the foundation of modern development methodologies. Without a deep understanding of OOP, it would be difficult to properly use modern development methods such as TDD, DDD, Agile, and MSA, even if you study them. This is the reason why there are many projects that apply MSA but few successful cases.
-
-Design patterns are a collection of commonly used patterns in object-oriented programming. We will cover this topic next time.
+Design patterns are a collection of common patterns frequently used in object-oriented programming. I will cover this next time.
