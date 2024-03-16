@@ -3,15 +3,11 @@ layout: post
 title:  "Understanding Object-Oriented Programming"
 ---
 
-Numerous articles and videos explain object-oriented programming (OOP). However, even after going through such materials, it's not easy to grasp what object orientation really is. Why is that?
-
-The most important thing when learning OOP is a shift in thinking. Martin Fowler says the best way to achieve this shift in thinking is to work for some time in an environment where OOP is well-structured. However, it's not easy to find such an environment because there aren't many developers who properly understand OOP.
-
 > Object-oriented programming is a programming paradigm that groups data and functions into a single 'object' to increase cohesion and reduce dependencies.
 
-The commonly discussed principles such as encapsulation, information hiding, polymorphism, and inheritance are concepts derived from this essence.
+The most important thing when learning OOP is a shift in thinking. Martin Fowler says the best way to achieve this shift in thinking is to work for some time in an environment where OOP is well-structured. However, it is not easy to find such an environment because there are not many developers who properly understand OOP.
 
-In this article, we will explore what the essence of OOP is and aim to help bring about a shift in thinking by improving code from procedural to object-oriented.
+In this article, we will look at what the essence of OOP is by improving code from procedural to object-oriented methods, and try to help, even a little, in achieving that shift in thinking.
 
 ## Introduction to Procedural Code
 
@@ -495,19 +491,22 @@ On the other hand, the process of repeating incremental development, which is an
 
 ## Conclusion
 
-This article began like this.
+This article started like this:
 
 > Object-oriented programming is a programming paradigm that groups data and functions into a single 'object' to increase cohesion and reduce dependencies.
 
 That's right. Grouping data and functions into a single object is the core of object orientation.
-However, many articles or videos explaining OOP explain what encapsulation, information hiding, polymorphism, and inheritance of OOP are. These four basic principles of OOP are only guidelines for grouping data and functions. The most basic and essential thing is the grouping of data and functions.
 
-Then, can an object exist with only data? Conversely, can an object exist with only functions?
-Even if you write code using class syntactically, it is not an object. An object is meaningful only when state (properties) and behavior (methods) are together.
+However, many articles or videos explaining OOP describe what encapsulation, information hiding, polymorphism, and inheritance in OOP are. These four basic principles of OOP are just guidelines for grouping data and functions. The most basic and essential thing is the grouping of data and functions.
 
-You may feel like you know something after reading this article now. However, it will not be concretized until you actually change your code to object-oriented.
-Much consideration and practice are needed to determine what good code is.
+Then, can there be an object that only has data? Conversely, can there be an object that only has functions?
 
-OOP is at the root of modern development methodologies. If you don't deeply understand OOP, it will be difficult to use modern development methods such as TDD, DDD, Agile, MSA correctly even if you study them. This is the reason why there are many projects that have applied MSA but few success cases.
+Even if you write code using the class syntax, it is not an object. An object only makes sense when it has both state (properties) and methods.
 
-Design patterns are a collection of common patterns frequently used in object-oriented programming. I will cover this next time.
+You may have felt like you understand something after reading this article. However, it will not be concrete until you actually try to change your own code to be object-oriented.
+
+It takes a lot of thought and practice to determine what good code is.
+
+OOP is at the core of modern development methodologies. If you don't have a deep understanding of OOP, it will be difficult to use modern development methods such as TDD, DDD, Agile, and MSA correctly, even if you study them. This is the reason why there are many projects that have applied MSA, but few success stories.
+
+Design patterns are a collection of common patterns frequently used in object-oriented programming. We will cover this next time.
