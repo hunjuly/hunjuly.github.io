@@ -1,0 +1,16 @@
+@startuml
+
+@startuml
+class documents {
+    id : int
+    ...
+
+    type : consular | apostille
+}
+note right
+Previously, it was being stored in
+the documents table, differentiated by type
+end note
+@enduml
+
+@enduml

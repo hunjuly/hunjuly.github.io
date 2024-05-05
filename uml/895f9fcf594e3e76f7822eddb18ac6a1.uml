@@ -1,0 +1,30 @@
+@startuml
+
+@startuml
+left to right direction
+
+package "Completely separated service and table" {
+    package "REST API Layer" {
+    [Apostille API]
+    [Consular API]
+    }
+
+    package "Service Layer" {
+    [Apostille Service]
+    [Consular Service]
+    }
+
+    package "Data Layer" {
+    [Apostille Table]
+    [Consular Table]
+    }
+
+    [Apostille API] --> [Apostille Service]
+    [Consular API] --> [Consular Service]
+    [Apostille Service] --> [Apostille Table]
+    [Consular Service] --> [Consular Table]
+}
+
+@enduml
+
+@enduml

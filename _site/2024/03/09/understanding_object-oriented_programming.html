@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Understanding Object-Oriented Programming | hunjuly.code</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Understanding Object-Oriented Programming" />
+<meta name="author" content="hunjuly" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Object-oriented programming is a programming paradigm that groups data and functions into a single ‘object’ to increase cohesion and reduce dependency." />
+<meta property="og:description" content="Object-oriented programming is a programming paradigm that groups data and functions into a single ‘object’ to increase cohesion and reduce dependency." />
+<meta property="og:site_name" content="hunjuly.code" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-03-09T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Understanding Object-Oriented Programming" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"hunjuly"},"dateModified":"2024-03-09T00:00:00+00:00","datePublished":"2024-03-09T00:00:00+00:00","description":"Object-oriented programming is a programming paradigm that groups data and functions into a single ‘object’ to increase cohesion and reduce dependency.","headline":"Understanding Object-Oriented Programming","mainEntityOfPage":{"@type":"WebPage","@id":"/2024/03/09/understanding_object-oriented_programming.html"},"url":"/2024/03/09/understanding_object-oriented_programming.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="hunjuly.code" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">hunjuly.code</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Understanding Object-Oriented Programming</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-03-09T00:00:00+00:00" itemprop="datePublished">
+        Mar 9, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <blockquote>
+  <p>Object-oriented programming is a programming paradigm that groups data and functions into a single ‘object’ to increase cohesion and reduce dependency.</p>
+</blockquote>
+
+<p>When learning OOP, the most important thing is a shift in thinking. Martin Fowler says the best way to achieve this shift in thinking is to work for some time in an environment where OOP is well-structured. However, it is not easy to find such an environment because there are not many developers who properly understand OOP.</p>
+
+<p>In this article, we will try to understand the essence of OOP by improving code from procedural to object-oriented style, and hopefully help a little in achieving this shift in thinking.</p>
+
+<h2 id="1-introduction-to-procedural-code">1. Introduction to Procedural Code</h2>
+
+<p>First, let’s write a function that reads a document from a buffer and outputs it character by character.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/* Read from buffer */</span>
+<span class="kd">function</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">;</span>
+
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printDocument</span><span class="p">(</span><span class="nx">buffer</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">buffer</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">buffer</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="11-adding-features-to-procedural-code">1.1. Adding Features to Procedural Code</h3>
+
+<p>Let’s add a feature to read a document from a file and output it character by character.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="cm">/* Read from buffer */</span>
+  <span class="kd">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+
+  <span class="cm">/* Read from file */</span>
+  <span class="kd">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="p">(</span><span class="dl">"</span><span class="s2">test.txt</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+  <span class="nx">file</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printDocument</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="nx">File</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Read from buffer */</span>
+  <span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">doc</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">string</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">doc</span> <span class="k">instanceof</span> <span class="nx">File</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* Read from file */</span>
+    <span class="kd">let</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+
+    <span class="k">while </span><span class="p">(</span><span class="nx">char</span> <span class="o">!=</span> <span class="nx">EOF</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+
+      <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>This is a typical procedural style. One characteristic of procedural code is that ‘if’ appears frequently.</p>
+
+<h2 id="2-problems-with-procedural-code">2. Problems with Procedural Code</h2>
+
+<p>What if we need to add a feature to read from a REST API here? Not only the main() function but also the printDocument() function needs to be modified.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="cm">/* Read from buffer */</span>
+  <span class="kd">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+
+  <span class="cm">/* Read from file */</span>
+  <span class="kd">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="p">(</span><span class="dl">"</span><span class="s2">test.txt</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+  <span class="nx">file</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+
+  <span class="cm">/* REST API request */</span>
+  <span class="kd">const</span> <span class="nx">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HttpRequest</span><span class="p">(</span><span class="dl">"</span><span class="s2">https://test.com/api</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">request</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printDocument</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="nx">File</span> <span class="o">|</span> <span class="nx">HttpRequest</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Read from buffer */</span>
+  <span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">doc</span> <span class="o">===</span> <span class="dl">"</span><span class="s2">string</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">doc</span> <span class="k">instanceof</span> <span class="nx">File</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* Read from file */</span>
+    <span class="kd">let</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+
+    <span class="k">while </span><span class="p">(</span><span class="nx">char</span> <span class="o">!=</span> <span class="nx">EOF</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+
+      <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">doc</span> <span class="k">instanceof</span> <span class="nx">HttpRequest</span><span class="p">)</span> <span class="p">{</span>
+    <span class="cm">/* REST API request */</span>
+    <span class="kd">const</span> <span class="nx">body</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">body</span><span class="p">();</span>
+
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">body</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">body</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+
+      <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>It’s not a problem if it’s just modifying the printDocument() function like now. But what if there are other functions besides printDocument()? The number of functions that need to be changed increases accordingly.</p>
+
+<h3 id="21-problems-in-nested-functions">2.1. Problems in Nested Functions</h3>
+
+<p>Real projects often have longer and more complex code than this. In such an environment, it is not easy to find and modify all the related functions.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span>
+    <span class="nf">printDocument</span><span class="p">(</span><span class="nx">buffer</span><span class="p">)</span>
+    <span class="nf">updateDocument</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="dl">"</span><span class="s2">new contents</span><span class="dl">"</span><span class="p">)</span>
+    <span class="nf">clearDocument</span><span class="p">(</span><span class="nx">buffer</span><span class="p">)</span>
+
+    <span class="kd">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="p">(</span><span class="dl">"</span><span class="s2">test.txt</span><span class="dl">"</span><span class="p">)</span>
+    <span class="nf">printDocument</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+    <span class="nf">updateDocument</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="dl">"</span><span class="s2">new contents</span><span class="dl">"</span><span class="p">)</span>
+    <span class="c1">// To clear, you need to know the rule that it must be closed first.</span>
+    <span class="nx">file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="nf">clearDocument</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">updateDocument</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="nx">File</span><span class="p">,</span> <span class="nx">contents</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">doc</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">doc</span> <span class="o">=</span> <span class="nx">contents</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">doc</span> <span class="k">instanceof</span> <span class="nx">File</span><span class="p">){</span>
+        <span class="nx">doc</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="nx">contents</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">doc</span> <span class="k">instanceof</span> <span class="nx">HttpRequest</span><span class="p">){</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">clearDocument</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="nx">File</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">doc</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">doc</span> <span class="o">=</span> <span class="dl">""</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">doc</span> <span class="k">instanceof</span> <span class="nx">File</span><span class="p">){</span>
+        <span class="nx">doc</span><span class="p">.</span><span class="k">delete</span><span class="p">()</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">doc</span> <span class="k">instanceof</span> <span class="nx">HttpRequest</span><span class="p">){</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printDocument</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="kr">string</span> <span class="o">|</span> <span class="nx">File</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">doc</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">doc</span> <span class="k">instanceof</span> <span class="nx">File</span><span class="p">){</span>
+        <span class="kd">let</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">getChar</span><span class="p">()</span>
+
+        <span class="k">while </span><span class="p">(</span><span class="nx">char</span> <span class="o">!=</span> <span class="nx">EOF</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">)</span>
+
+            <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">getChar</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">doc</span> <span class="k">instanceof</span> <span class="nx">HttpRequest</span><span class="p">){</span>
+        <span class="p">...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>‘if’ increases code complexity and makes development difficult. Removing the ‘if’ statements causes even bigger side effects.</p>
+
+<h2 id="3-how-to-improve-procedural-code">3. How to Improve Procedural Code</h2>
+
+<h3 id="31-breaking-down-functions">3.1. Breaking Down Functions</h3>
+
+<p>As a way to avoid ‘if’, we can think of a method to break down printDocument().</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="nf">printBufferDocument</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="p">(</span><span class="dl">"</span><span class="s2">test.txt</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nf">printFileDocument</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printBufferDocument</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printFileDocument</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="nx">File</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+
+  <span class="k">while </span><span class="p">(</span><span class="nx">char</span> <span class="o">!=</span> <span class="nx">EOF</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+
+    <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>At first glance, it seems like a good method.</p>
+
+<p>But usually, functions are called nested like below.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span>
+    <span class="nf">printBufferWeeklyReport</span><span class="p">(</span><span class="nx">buffer</span><span class="p">)</span>
+
+    <span class="kd">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="p">(</span><span class="dl">"</span><span class="s2">test.txt</span><span class="dl">"</span><span class="p">)</span>
+    <span class="nf">printFileWeeklyReport</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printBufferWeeklyReport</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="kr">string</span><span class="p">){</span>
+    <span class="cm">/* code to generate report */</span>
+    <span class="p">...</span>
+
+    <span class="nf">printBufferDocument</span><span class="p">(</span><span class="nx">report</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printFileWeeklyReport</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="nx">File</span><span class="p">){</span>
+    <span class="cm">/* code to generate report */</span>
+    <span class="p">...</span>
+
+    <span class="nf">printFileDocument</span><span class="p">(</span><span class="nx">report</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>The ‘if’ statements have definitely disappeared. However, in order to avoid ‘if’, the ‘code to generate report’ is repeated. If that’s the case, it’s better to use ‘if’.</p>
+
+<h3 id="32-passing-execution-code">3.2. Passing Execution Code</h3>
+
+<p>The fundamental reason why ‘if’ cannot be removed in printDocument() is because the main() function only passes the data needed for printDocument(), but does not pass how to use that data.</p>
+
+<p>So printDocument() has to determine which code to execute based on the type of data.</p>
+
+<p>Then what if we pass the code to be executed together?</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">buffer</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">position</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">getCharFromBuffer</span> <span class="o">=</span> <span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">position</span> <span class="o">==</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">position</span><span class="o">++</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="nx">getCharFromBuffer</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="p">(</span><span class="dl">"</span><span class="s2">test.txt</span><span class="dl">"</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">getCharFromFile</span> <span class="o">=</span> <span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="nx">File</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">doc</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="nx">char</span> <span class="o">==</span> <span class="nx">EOF</span> <span class="p">?</span> <span class="kc">null</span> <span class="p">:</span> <span class="nx">char</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="nx">getCharFromFile</span><span class="p">);</span>
+  <span class="nx">file</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printDocument</span><span class="p">(</span><span class="nx">doc</span><span class="p">:</span> <span class="kr">any</span><span class="p">,</span> <span class="nx">getChar</span><span class="p">:</span> <span class="nx">Func</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">char</span> <span class="o">=</span> <span class="nf">getChar</span><span class="p">(</span><span class="nx">doc</span><span class="p">);</span>
+
+  <span class="k">while </span><span class="p">(</span><span class="nx">char</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+
+    <span class="nx">char</span> <span class="o">=</span> <span class="nf">getChar</span><span class="p">(</span><span class="nx">doc</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Although the main() function has become more complex, printDocument() no longer needs an ‘if’ statement and does not have to be changed no matter what format comes in.</p>
+
+<p>Now, how can we clean up the main() function?</p>
+
+<h2 id="4-object-oriented-code">4. Object-Oriented Code</h2>
+
+<p>To clean up the main() function, we can use classes.</p>
+
+<div class="language-ts highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">bufferDocument</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferDocument</span><span class="p">(</span><span class="dl">"</span><span class="s2">Hello, World!</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">bufferDocument</span><span class="p">);</span>
+
+  <span class="kd">const</span> <span class="nx">fileDocument</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileDocument</span><span class="p">(</span><span class="dl">"</span><span class="s2">test.txt</span><span class="dl">"</span><span class="p">);</span>
+  <span class="nf">printDocument</span><span class="p">(</span><span class="nx">fileDocument</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nf">printDocument</span><span class="p">(</span><span class="nx">reader</span><span class="p">:</span> <span class="nx">DocumentReadable</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">char</span> <span class="o">=</span> <span class="nx">reader</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+
+  <span class="k">while </span><span class="p">(</span><span class="nx">char</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="nx">char</span><span class="p">);</span>
+    <span class="nx">char</span> <span class="o">=</span> <span class="nx">reader</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">reader</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kr">interface</span> <span class="nx">DocumentReadable</span> <span class="p">{</span>
+  <span class="nf">getChar</span><span class="p">():</span> <span class="kr">string</span> <span class="o">|</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="nf">close</span><span class="p">():</span> <span class="k">void</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">BufferDocument</span> <span class="k">implements</span> <span class="nx">DocumentReadable</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">position</span><span class="p">:</span> <span class="kr">number</span><span class="p">;</span>
+
+  <span class="nf">constructor</span><span class="p">(</span><span class="k">private</span> <span class="nx">buffer</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">position</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="nf">getChar</span><span class="p">():</span> <span class="kr">string</span> <span class="o">|</span> <span class="kc">null</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">buffer</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">buffer</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">position</span><span class="o">++</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">FileDocument</span> <span class="k">implements</span> <span class="nx">DocumentReadable</span> <span class="p">{</span>
+  <span class="k">private</span> <span class="nx">stream</span><span class="p">:</span> <span class="nx">ReadStream</span><span class="p">;</span>
+
+  <span class="nf">constructor</span><span class="p">(</span><span class="nx">filename</span><span class="p">:</span> <span class="kr">string</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">stream</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="p">(</span><span class="nx">filename</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="nf">getChar</span><span class="p">():</span> <span class="kr">string</span> <span class="o">|</span> <span class="kc">null</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">char</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">stream</span><span class="p">.</span><span class="nf">getChar</span><span class="p">();</span>
+    <span class="k">return</span> <span class="nx">char</span> <span class="o">!==</span> <span class="nx">EOF</span> <span class="p">?</span> <span class="nx">char</span> <span class="p">:</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="nf">close</span><span class="p">():</span> <span class="k">void</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">stream</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>In the object-oriented printDocument() above, there is no ‘if’ statement to determine the document type. When an object is first created in main(), everything needed is determined. printDocument() only needs to use the given object.</p>
+
+<blockquote>
+  <p>If you see ‘if’ statements in the code, think about whether this is procedural or not, and whether it can be improved to object-oriented.</p>
+</blockquote>
+
+<p>Earlier, I said that procedural code only passes the data needed for printDocument(), not the specific method (function) to use that data. The object-oriented approach bundles data and the functions that use that data into an object and passes it. This is the biggest and most prominent difference.</p>
+
+<h2 id="5-characteristics-of-good-objects">5. Characteristics of Good Objects</h2>
+
+<p>Let’s express the code as a class diagram.</p>
+
+<p><object data="/uml/152ad9a5674298d75d5a14fc5eceea85.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<h3 id="51-separation-of-concerns">5.1. Separation of Concerns</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">printDocument()</code> function only uses the <code class="language-plaintext highlighter-rouge">DocumentReadable</code> interface.<br />
+<code class="language-plaintext highlighter-rouge">BufferDocument</code> and <code class="language-plaintext highlighter-rouge">FileDocument</code> only provide their own functionality according to the <code class="language-plaintext highlighter-rouge">DocumentReadable</code> interface.</p>
+
+<p>In other words, <code class="language-plaintext highlighter-rouge">printDocument()</code>, <code class="language-plaintext highlighter-rouge">BufferDocument</code>, and <code class="language-plaintext highlighter-rouge">FileDocument</code> only know the <code class="language-plaintext highlighter-rouge">DocumentReadable</code> interface and do not know about each other. This means that as long as the <code class="language-plaintext highlighter-rouge">DocumentReadable</code> interface does not change, there is no need to change each class or function.</p>
+
+<p>To explain again, if the interface is not changed, no matter how each part is changed, it does not affect other parts. This is how object-oriented programming enables incremental development. This mechanism of separating interfaces and implementations naturally results in high cohesion and low coupling.</p>
+
+<blockquote>
+  <p>If you are accustomed to procedural thinking, you may find it clumsy to aggregate functions in this way and focus only on that part. This appears not only in code but also in everyday work such as dividing tasks and collaborating.</p>
+
+  <p>For example, a front-end developer and a back-end developer define a REST API and proceed with their own development. Then an error occurs in the backend that does not meet the previously defined REST API. When debugging, it is found that modifying the code in the backend is more complicated than changing the REST API and modifying the code in the frontend. The backend developer asks the frontend developer to modify the code, and the frontend developer gladly agrees.</p>
+
+  <p>It is a big problem to abandon the principles set when designing the REST API. Moreover, by pulling the frontend into the backend’s problem, the backend and frontend become that much more tightly coupled.</p>
+
+  <p>You may wonder if such a small change is really such a big problem. It may not seem significant at the time of coding, but it becomes an obstacle when another developer tries to analyze the code after some time has passed.</p>
+
+  <p>“Each person’s work area must be strictly adhered to.”</p>
+
+  <p>Developers accustomed to procedural thinking sometimes perceive this statement as selfish and cold. However, this is an extremely technical approach.</p>
+</blockquote>
+
+<h3 id="52-access-control">5.2. Access Control</h3>
+
+<p>Functions can be seen as connected to each other through variables.</p>
+
+<p>Let’s think about global variables. It is often said that global variables should not be used. Because all functions that use a single global variable are connected to each other. In a situation where the source code exceeds 100,000 lines, how can you guarantee that other functions will behave according to the rules you think of?
+This dramatically increases complexity.</p>
+
+<blockquote>
+  <p>If you don’t understand the extent of the impact when modifying code, you are almost certainly creating bugs.</p>
+</blockquote>
+
+<p>In the diagram below, the read(), write(), change(), and reset() functions that use the ‘count’ variable are connected to each other. In particular, the change() and reset() functions that change the value have a direct impact on all other functions.</p>
+
+<!-- markdownlint-disable MD032 MD037 -->
+<p><object data="/uml/62794e45846be2ea9677da1605c99ef9.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>On the other hand, functions that use <code class="language-plaintext highlighter-rouge">buffer</code> or <code class="language-plaintext highlighter-rouge">position</code> of <code class="language-plaintext highlighter-rouge">BufferDocument</code> can only exist within the <code class="language-plaintext highlighter-rouge">BufferDocument</code> class.
+This is because external access to the two properties (variables) is fundamentally blocked because they are private.</p>
+
+<p>This is the reason why properties should not be directly exposed as public. If properties can be changed from the outside, it becomes impossible to know the extent of the impact when changing code related to the properties. Potentially, it becomes no different from a global variable.</p>
+
+<h2 id="6-application-of-object-orientation">6. Application of Object Orientation</h2>
+
+<p>The characteristics of object-oriented approach, which manages complexity through separation of concerns and minimizes the impact of changes, also influence other areas.</p>
+
+<h3 id="61-microservices-architecture">6.1. Microservices Architecture</h3>
+
+<p>MSA has many structural similarities to the object-oriented approach.</p>
+
+<p>The core of object orientation is to bundle data and functions into a single object. In MSA, services also manage DB and API as one, and the internal implementation and DB of each service are not exposed to the outside. This becomes a great advantage for maintainability and scalability, while preventing changes within the service from affecting the outside.</p>
+
+<p><object data="/uml/5343b720ca16b12ee6bef537a977a2af.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>As you can see from the fact that OOP and MSA are structurally similar, if you do not properly understand OOP, it will be very difficult to understand and correctly design architectures like MSA.</p>
+
+<p>These days, MSA seems to be in fashion. And many developers seem to be focused only on learning how to use MSA components such as API gateway, gRPC, and message brokers. However, the most important and fundamental thing is a deep understanding of OOP.</p>
+
+<h3 id="62-agile-methodology">6.2. Agile Methodology</h3>
+
+<p>The way of working where related people such as designers, developers, and planners form a team and collaborate closely can be likened to the high cohesion and low coupling, which are the core principles of object-oriented programming (OOP). This approach plays an important role in increasing productivity and efficiency not only in software development but also in organization composition and teamwork.</p>
+
+<p>The composition of an agile team itself is not the same structure as an object that combines data and functions into one. However, in an agile team, the planner produces data called requirements, and the developer implements them, so there is a similarity in that the subjects of data production and consumption are together. This can be seen in the same context as data (properties) and functions (methods) being closely related within an object.</p>
+
+<p>On the other hand, the process of repeating incremental development, which is an important principle of agile methodology, is possible based on the separation of concerns in object-oriented design. Object-oriented programming models the system as interactions of independent objects, allowing each object to be developed and tested individually. This helps facilitate the small-scale development and feedback incorporation that agile methodology aims for. As a result, OOP is establishing itself as one of the main techniques underlying agile software development.</p>
+
+<h2 id="7-conclusion">7. Conclusion</h2>
+
+<p>This article started like this:</p>
+
+<blockquote>
+  <p>Object-oriented programming is a programming paradigm that groups data and functions into a single ‘object’ to increase cohesion and reduce dependencies.</p>
+</blockquote>
+
+<p>That’s right. Grouping data and functions into a single object is the core of object orientation.</p>
+
+<p>However, many articles or videos explaining OOP describe what encapsulation, information hiding, polymorphism, and inheritance in OOP are. These four basic principles of OOP are just guidelines for grouping data and functions. The most basic and essential thing is the grouping of data and functions.</p>
+
+<p>Then, can there be an object that only has data? Conversely, can there be an object that only has functions?</p>
+
+<p>Even if you write code using the class syntax, it is not an object. An object only makes sense when it has both state (properties) and methods.</p>
+
+<p>You may have felt like you understand something after reading this article. However, it will not be concrete until you actually try to change your own code to be object-oriented.</p>
+
+<p>It takes a lot of thought and practice to determine what good code is.</p>
+
+<p>OOP is at the core of modern development methodologies. If you don’t have a deep understanding of OOP, it will be difficult to use modern development methods such as TDD, DDD, Agile, and MSA correctly, even if you study them. This is the reason why there are many projects that have applied MSA, but few success stories.</p>
+
+<p>Design patterns are a collection of common patterns frequently used in object-oriented programming. We will cover this next time.</p>
+
+  </div><script src="https://utteranc.es/client.js"
+    repo="hunjuly/hunjuly.github.io"
+    issue-term="pathname"
+    label="comment"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
+  </script>
+
+  <a class="u-url" href="/2024/03/09/understanding_object-oriented_programming.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li><a class="p-name" href="https://github.com/hunjuly">https://github.com/hunjuly</a></li>
+          <li><a class="u-email" href="mailto:hunjuly@gmail.com">hunjuly@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>I cover the fundamentals of programming such as refactoring, design patterns, OOP, TDD, DDD, and architecture.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

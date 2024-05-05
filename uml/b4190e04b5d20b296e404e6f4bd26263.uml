@@ -1,0 +1,27 @@
+@startuml
+
+@startuml
+left to right direction
+
+package "Decided to separate only the REST API into two and implement the service and table as one" {
+    package "REST API Layer" {
+    [Apostille API]
+    [Consular API]
+    }
+
+    package "Service Layer" {
+    [Document Service]
+    }
+
+    package "Data Layer" {
+    [Document Table]
+    }
+
+    [Apostille API] --> [Document Service]
+    [Consular API] --> [Document Service]
+    [Document Service] --> [Document Table]
+}
+
+@enduml
+
+@enduml

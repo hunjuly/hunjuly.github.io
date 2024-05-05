@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Essence-Based Interpretation | hunjuly.code</title>
+<meta name="generator" content="Jekyll v4.3.3" />
+<meta property="og:title" content="Essence-Based Interpretation" />
+<meta name="author" content="hunjuly" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="1. Introduction" />
+<meta property="og:description" content="1. Introduction" />
+<meta property="og:site_name" content="hunjuly.code" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-05-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Essence-Based Interpretation" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"hunjuly"},"dateModified":"2024-05-04T00:00:00+00:00","datePublished":"2024-05-04T00:00:00+00:00","description":"1. Introduction","headline":"Essence-Based Interpretation","mainEntityOfPage":{"@type":"WebPage","@id":"/2024/05/04/ebi.html"},"url":"/2024/05/04/ebi.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="hunjuly.code" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">hunjuly.code</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Essence-Based Interpretation</h1>
+    <p class="post-meta"><time class="dt-published" datetime="2024-05-04T00:00:00+00:00" itemprop="datePublished">
+        May 4, 2024
+      </time></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <h2 id="1-introduction">1. Introduction</h2>
+
+<p>I have spent a long time and put in a lot of effort to write good code. To write good code, I studied refactoring, design patterns, various architectures, and development methodologies. Even when my code worked well, I constantly thought about better structures and names.</p>
+
+<p>Nevertheless, I couldn’t make clear decisions in the moment of choice and kept implementing method A one day and method B the next. This is because both methods had clear advantages and disadvantages, so I would feel unsatisfied no matter which method I chose. Here, the method could be a design pattern, or it could be the name of a function or variable.</p>
+
+<p>At that time, I thought I had a certain level of competence as a developer, but it seemed like this agony of choice would never disappear no matter how much experience and effort I accumulated. I even thought that this might be an area of art where there is no correct answer and only personal preferences, like developers who don’t understand design patterns dismissing them as useless in practice. It seemed like an insurmountable wall to me. It might have been a defense mechanism, similar to how developers who don’t understand design patterns dismiss them as useless in practice.</p>
+
+<p>Then I suddenly realized what I had been missing: <code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code>. <code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code> is an effort to gain insight into the essence of something when looking at it.</p>
+
+<p>Since this concept came to me while contemplating <code class="language-plaintext highlighter-rouge">DDD(Domain-Driven Design)</code>, it has a similar context to <code class="language-plaintext highlighter-rouge">DDD(Domain-Driven Design)</code>. So I feel a bit embarrassed to define it with the grandiose name of <code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code>. However, I want to define <code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code> with the hope that it will help many developers, including myself, to more clearly recognize the existence of this concept.</p>
+
+<p>Since <code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code> is not a concrete methodology but closer to an abstract concept, it is difficult to explain in clear sentences. So I want to explain what <code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code> is through a few examples.</p>
+
+<h2 id="2-implementation-of-arrow-keys">2. Implementation of Arrow Keys</h2>
+
+<p>The user needs to be provided with arrow keys to select ‘up/down/left/right’. The shapes of the 4 arrows are the same, only the directions are different. There are two ways to implement the arrow keys.</p>
+
+<h3 id="21-method-1---reusing-one-image-by-rotating-it">2.1. Method #1 - Reusing one image by rotating it</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Method #1</code> is to implement it by rotating one arrow image (arrow.png). Since the shapes of the arrows are the same, it can be easily implemented.</p>
+
+<p>This method has the advantage of taking up less storage space. However, it has the disadvantage of relatively lower code readability.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;View</span> <span class="na">src=</span><span class="s">"arrow.png"</span> <span class="na">rotate=</span><span class="s">"0"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;View</span> <span class="na">src=</span><span class="s">"arrow.png"</span> <span class="na">rotate=</span><span class="s">"180"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;View</span> <span class="na">src=</span><span class="s">"arrow.png"</span> <span class="na">rotate=</span><span class="s">"-90"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;View</span> <span class="na">src=</span><span class="s">"arrow.png"</span> <span class="na">rotate=</span><span class="s">"90"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/arrows1.svg" alt="Arrow Keys 1" /> <br />
+<em>[Figure 2-1] Arrow keys implemented by rotating one image</em></p>
+
+<h3 id="22-method-2---using-4-images">2.2. Method #2 - Using 4 images</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Method #2</code> is to use 4 images corresponding to up/down/left/right.</p>
+
+<p>This method has the disadvantage of the inconvenience of managing more image resources and taking up more storage space. On the other hand, the code readability is relatively good.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;View</span> <span class="na">src=</span><span class="s">"up.png"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;View</span> <span class="na">src=</span><span class="s">"down.png"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;View</span> <span class="na">src=</span><span class="s">"left.png"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;View</span> <span class="na">src=</span><span class="s">"right.png"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/arrows2.svg" alt="Arrow Keys 2" /> <br />
+<em>[Figure 2-2] Arrow keys implemented with 4 up/down/left/right images</em></p>
+
+<h3 id="23-what-is-the-right-method">2.3. What is the right method?</h3>
+
+<p>What is the right thing to do? Or does right and wrong even exist in this choice? Is it just a matter of personal philosophy? If you pursue readable code, it would be <code class="language-plaintext highlighter-rouge">Method #1</code>, but if you pursue efficiency, it would be <code class="language-plaintext highlighter-rouge">Method #2</code>.</p>
+
+<p>Is readable code right? Is performance-efficient code right? In the past, performance efficiency was generally prioritized, but these days when hardware performance is sufficient, readable code is preferred. Should we choose readable code for that reason?</p>
+
+<p>Many developers probably focused on the fact that the shapes of the arrows are the same and chose <code class="language-plaintext highlighter-rouge">Method #1</code> to pursue efficiency by rotating the image.</p>
+
+<p>There may be various thoughts, but the first thing to consider is the meaning of the arrows. If the arrows are used to point to a specific object as in <em>[Figure 2-3]</em>, then it is correct to implement it by rotating the arrows as in <code class="language-plaintext highlighter-rouge">Method #1</code>.</p>
+
+<p><img src="/assets/images/arrows3.svg" alt="Arrow Keys 3" /> <br />
+<em>[Figure 2-3] Arrows used to point to something</em></p>
+
+<p>However, the arrow keys that the user thought of were probably the 4 fixed arrow keys in the corner of the keyboard, as in <em>[Figure 2-4]</em>. And what is similar to such user’s thoughts is using 4 images as in <code class="language-plaintext highlighter-rouge">Method #2</code>.</p>
+
+<p><img src="/assets/images/arrows4.svg" alt="Arrow Keys 4" /> <br />
+<em>[Figure 2-4] Arrow keys with different arrow shapes</em></p>
+
+<p>You might think that there isn’t much difference no matter which method you choose because the end result shown to the user is the same. What happens if you pursue only implementation convenience while ignoring the user’s thoughts?</p>
+
+<p>The user thinks that the shapes of the arrows can be easily changed at any time. This is because the user naturally thinks that the arrow keys are composed of 4 images. Optimizing performance by rotating the image is solely from the developer’s perspective. And one day, the user may lightly request to change the shapes of the arrow keys as in <em>[Figure 2-4]</em>. They will think it’s an easy task since you only need to change the key images. However, for the developer, it becomes a big task of having to change the implementation method.</p>
+
+<p>The fact that the shapes of the arrows are the same is just a coincidence. Reflecting this coincidental situation in the implementation distances it from the user’s thoughts. In other words, if you pursue only implementation convenience while ignoring the user’s intent, maintenance becomes increasingly difficult.</p>
+
+<h3 id="24-difficulty-of-interpretation">2.4. Difficulty of Interpretation</h3>
+
+<p>One of the reasons for agonizing over multiple methods is that obvious information is omitted.</p>
+
+<p>When the user mentioned arrow keys as a requirement, they probably didn’t specifically explain that it’s those arrow keys on the keyboard. From the user’s perspective, when they say arrow keys, they naturally think it’s those on the keyboard.</p>
+
+<p>However, from the developer’s perspective, there is no additional information about the arrow keys, so they agonize a bit more when choosing the implementation method.</p>
+
+<p>This is the difficult part of interpretation. The parts that are considered obvious and omitted from specific definitions must be filled in by the developer during the development stage. And for the developer to fill in the omitted parts, a lot of experience and insight are needed to consider all the reasons and processes behind why the requirements were defined that way.</p>
+
+<p>What if you can’t accurately grasp the user’s intent in the current situation? Or what if you can’t predict how it will change?</p>
+
+<p>You can define <code class="language-plaintext highlighter-rouge">&lt;Up /&gt;&lt;Down /&gt;&lt;Left /&gt;&lt;Right /&gt;</code> classes so that no matter how the arrow requirements change, it won’t affect other parts.</p>
+
+<blockquote>
+  <p>This happened when I was working at a company that operates an online shopping mall. The topic of the meeting was how to implement ‘coupons’.</p>
+
+  <p>At that time, the development team was only handling payment amounts in the currency unit of ‘won’. All the amounts stored in the DB were in ‘won’, and the amounts handled in the code were also in ‘won’. The concept of ‘payment amount’ from the user’s perspective was not considered.</p>
+
+  <p>In this situation, the concept of ‘points’ was introduced. Fortunately, at that time, it was a simple structure where 1 point equals 1 won, so it could be handled relatively easily by adding a point column to the DB.</p>
+
+  <p>However, as the service expanded and features such as discount coupons and tier benefits were added, the ‘payment amount’ perceived by the user became a complex concept that could not be simply expressed in won. The existing ‘won’-centric implementation method could no longer fully reflect the user’s payment flow.</p>
+
+  <p>If we had thought more deeply about the meaning of ‘payment amount’ at the beginning of the project, we could have smoothly handled many changes later on.</p>
+
+  <p>Of course, this is not an easy thing to do. Fundamentally, you need to be proficient in object-oriented programming, which itself is not easy. And since you don’t know when and how the payment function will change, it would be difficult for even a skilled developer to create a ‘payment amount’ object from the beginning.</p>
+
+  <p>However, as in the case of the arrow keys, if you develop the habit of understanding the essence behind the requirements, you can greatly reduce trial and error.</p>
+</blockquote>
+
+<h2 id="3-shallow-routing-vs-nested-routing-in-rest-api">3. Shallow Routing vs Nested Routing in REST API</h2>
+
+<p>[Figure 3-1] is a sequence diagram of the user selecting the currently showing movie/theater/time in a movie ticketing service. How should the routing of the REST API be designed here?</p>
+
+<p><object data="/uml/dd3919add6897710139e36e963270f77.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p><em>[Figure 3-1]</em></p>
+
+<h3 id="31-shallow-routing">3.1. Shallow Routing</h3>
+
+<p>If designed in the <code class="language-plaintext highlighter-rouge">Shallow Routing</code> format, it would be similar to the following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Request list of currently showing movies</span>
+/movies?status<span class="o">=</span>showing
+
+<span class="c"># Request list of theaters showing the movie</span>
+/theaters?movieId<span class="o">={</span>movieId<span class="o">}</span>
+
+<span class="c"># Request list of showtimes</span>
+/showdates?movieId<span class="o">={</span>movieId<span class="o">}</span>&amp;theaterId<span class="o">={</span>theaterId<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Shallow Routing</code> has the advantage of good scalability since each resource can be managed independently. However, it has the disadvantage of not clearly expressing the relationships between resources, making it difficult to represent data with a complex hierarchical structure.</p>
+
+<h3 id="32-nested-routing">3.2. Nested Routing</h3>
+
+<p>If designed in the <code class="language-plaintext highlighter-rouge">Nested Routing</code> format, it would be similar to the following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Request list of currently showing movies</span>
+/showing/movies
+
+<span class="c"># Request list of theaters showing the movie</span>
+/showing/movies/<span class="o">{</span>movieId<span class="o">}</span>/theaters
+
+<span class="c"># Request list of showtimes</span>
+/showing/movies/<span class="o">{</span>movieId<span class="o">}</span>/theaters/<span class="o">{</span>theaterId<span class="o">}</span>/showdates
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Nested Routing</code> is suitable for expressing complex resource structures since the relationships between resources can be clearly expressed in the URL. However, flexibility is limited because if the nested resource structure changes, the URL must also change accordingly.</p>
+
+<h3 id="33-what-is-the-right-method">3.3. What is the right method?</h3>
+
+<p>We briefly looked at the advantages and disadvantages of the two REST API routing design methods. So which method should we choose between the flexibility of <code class="language-plaintext highlighter-rouge">Shallow Routing</code> and the clarity of <code class="language-plaintext highlighter-rouge">Nested Routing</code>?</p>
+
+<p>Which one to choose between the two methods should be based on what better expresses the movie ticketing process from a conceptual perspective.</p>
+
+<p>In that sense, <code class="language-plaintext highlighter-rouge">Nested Routing</code> directly reflects the ticket purchase process.
+Just as in the ticket purchase process you have to select a movie before selecting a theater, in <code class="language-plaintext highlighter-rouge">Nested Routing</code> you cannot specify a theater without specifying a movie first.
+In other words, the REST API of <code class="language-plaintext highlighter-rouge">Nested Routing</code> expresses a structure similar to the ticket purchase process.
+This should be enough to understand the ticket purchase process without separate documentation.</p>
+
+<p>I often see debates about which is better between <code class="language-plaintext highlighter-rouge">Shallow Routing</code> and <code class="language-plaintext highlighter-rouge">Nested Routing</code>.
+However, such debates are meaningless. What’s important is which one more accurately reflects the requirements.
+From a technical perspective, debating over a problem with no answer leads to never-ending debates.</p>
+
+<p>“If you think hard but can’t find an answer, the answer is not there.”</p>
+
+<h3 id="34-class-inheritance-and-composition">3.4. Class Inheritance and Composition</h3>
+
+<p>Another debate similar to the debate between <code class="language-plaintext highlighter-rouge">Shallow Routing</code> and <code class="language-plaintext highlighter-rouge">Nested Routing</code> is class inheritance and composition.</p>
+
+<p>Just as there is a general consensus that <code class="language-plaintext highlighter-rouge">Shallow Routing</code> is technically superior due to the advantages of flexibility, it is said that it is a good reuse method to avoid inheritance and use composition for classes if possible. However, this is also the same in that you should consider what better expresses the domain concept, not prioritize technical superiority.</p>
+
+<p><object data="/uml/9f603402d37bffc94cd71f3d9fe52b9d.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<p>In the diagram above, Dog is a type of Animal. It is natural to express this with inheritance. On the other hand, Engine is one of the components that make up Car. It is natural to express this with composition.</p>
+
+<h2 id="4-implementation-method-for-documents-with-similar-formats">4. Implementation Method for Documents with Similar Formats</h2>
+
+<p>There are two types of authentication methods for the overseas use of documents issued in Korea, such as income certificates: ‘apostille’ and ‘consular confirmation’.
+Consular confirmation is the general procedure, and apostille is a more simplified version of the consular confirmation procedure according to an agreement.</p>
+
+<p>The goal of the project was to build a system that could encrypt these two documents and check for tampering.</p>
+
+<p>Since the apostille and consular confirmation documents had similar items and structures, the previously built service also shared a single table.</p>
+
+<p><object data="/uml/6e6c9bb0cd0e2a22a8b46142664d1c2a.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<h3 id="41-initial-design">4.1. Initial Design</h3>
+
+<p>During the process of analyzing the existing system, it seemed to me that the similarity between consular confirmation and apostille was just a coincidence and they shouldn’t be treated as the same document. If they were the same document, the project name wouldn’t have been ‘Apostille &amp; Consular Confirmation’.</p>
+
+<p>On the other hand, the back-end developer was arguing that there was no need to separate them.
+In the end, as a compromise, we decided to separate only the REST API into two and implement the service and table as one.</p>
+
+<p><object data="/uml/b4190e04b5d20b296e404e6f4bd26263.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<h3 id="42-design-change">4.2. Design Change</h3>
+
+<p>However, as the project progressed, the differences between the two documents began to materialize.
+The document numbers of apostille and consular confirmation could overlap, so the document number systems became different.
+And as the service functions expanded, the interfaces of the two documents became increasingly different.</p>
+
+<p>In the end, we decided to split the table into two and separate the internal structure as well.
+Fortunately, since the APIs exposed externally were already separated into two, it was relatively easy to change the internal structure.
+If we had tried to avoid refactoring because separating was burdensome, the code would have been flooded with if-else statements everywhere and the door to hell would have opened.</p>
+
+<p><object data="/uml/895f9fcf594e3e76f7822eddb18ac6a1.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<h3 id="43-why-this-happened">4.3. Why This Happened</h3>
+
+<p>In this case, the fact that the formats of the two documents were the same was just a coincidence. It could change at any time according to the user’s requirements. The problem was that we reflected this coincidental situation in the implementation, ignoring the essence of the matter.</p>
+
+<p>Programmers often tend to prioritize implementation convenience. It won’t be easy to break that habit. However, you must strictly follow the domain concept.</p>
+
+<h2 id="5-storing-encoded-filenames">5. Storing Encoded Filenames</h2>
+
+<p>A user tries to upload a <code class="language-plaintext highlighter-rouge">[file].txt</code> file using a web browser.</p>
+
+<p>The filename that the user uploads contains special characters, so it needs to be URL encoded and sent to the server. Similarly, when the user wants to download the file, the filename needs to be URL encoded.</p>
+
+<p>Then should the server store the encoded string (<code class="language-plaintext highlighter-rouge">%5Bfile%5D.txt</code>) as is in the DB? Or is it better to decode it back to <code class="language-plaintext highlighter-rouge">[file].txt</code> and store it?</p>
+
+<p>If you store it as <code class="language-plaintext highlighter-rouge">[file].txt</code>, you have to encode it again when sending the file to the user. Then wouldn’t it be more efficient to just store it as <code class="language-plaintext highlighter-rouge">%5Bfile%5D.txt</code> as received?</p>
+
+<p>To understand the essence, we need to look at the user’s thoughts.</p>
+
+<p>The filename that the user uploaded is <code class="language-plaintext highlighter-rouge">[file].txt</code>. The user doesn’t think it gets converted. Therefore, when storing it, it’s right to store it as <code class="language-plaintext highlighter-rouge">[file].txt</code> according to the user’s thoughts.</p>
+
+<p>The reason for URL encoding in the first place is due to the technical limitation that only a part of the ASCII character set can be transmitted, not because of the user’s requirements. It’s not a good structure for the characteristics or limitations of a specific technology to affect other areas. Therefore, the technical problem that occurs in the HTML transmission process should be solved in that process, and bringing it to the DB becomes an anti-pattern where two large areas are tightly coupled.</p>
+
+<p>Reflecting the user’s intent more accurately takes priority over optimization.</p>
+
+<p>If you only consider the download function, storing it as received would be the best choice. However, as the function expands to displaying the file list or allowing search, the original string (<code class="language-plaintext highlighter-rouge">[file].txt</code>) will be needed. This is because the user thinks of the filename as <code class="language-plaintext highlighter-rouge">[file].txt</code>. If you store it as <code class="language-plaintext highlighter-rouge">%5Bfile%5D.txt</code>, you will have difficulty implementing the view or search functions.</p>
+
+<p>Pursuing implementation convenience like this makes you easily swayed by small changes.</p>
+
+<!-- markdownlint-disable MD034 -->
+<p><object data="/uml/543ff9861916ccb443624522babac381.svg" type="image/svg+xml" class="plantuml"></object></p>
+
+<h2 id="6-defining-functions-based-on-essence">6. Defining Functions Based on Essence</h2>
+
+<p>When developing a movie ticketing service, should we implement a shopping cart function? In e-commerce services, the shopping cart is an essential function, but is it also necessary for movie ticketing services?</p>
+
+<p>To answer this question, we need to think about the user experience in the actual movie ticketing process. Generally, when a user books a movie, it proceeds in the following order:</p>
+
+<ol>
+  <li>Select movie</li>
+  <li>Select showtime</li>
+  <li>Select seats</li>
+  <li>Payment</li>
+</ol>
+
+<p>In this process, we can’t find an intermediate step like “add to cart”. The user selects the movie, time, and seats, and proceeds directly to payment.</p>
+
+<p>Then adding a shopping cart function to an online movie ticketing service may be a decision far from the user’s actual experience. Rather, it may cause unnecessary complexity and undermine the consistency of online and offline experiences.</p>
+
+<p>Of course, there may be user requirements like “It would be nice to have a function to save the selected movie for later payment”. However, even in this case, rather than directly adopting the concept of a “shopping cart”, it needs to be reinterpreted into a concept that fits the context of the movie ticketing service. For example, it may be more appropriate to provide it as a function of “saving interested movies” or “saving booking history”.</p>
+
+<h2 id="7-naming-based-on-essence">7. Naming Based on Essence</h2>
+
+<p>I’m starting to develop a movie ticketing service as a project to convey basic knowledge about the backend. What should I name the project? Since it’s about movie ticketing, how about ticket-service?</p>
+
+<p>What we’re trying to make is indeed a ticket-service. However, if we think about why we’re making it, backend-fundamentals would be a better choice. ticket-service is just a means to convey basic knowledge about the backend. The means can always be changed.</p>
+
+<p>In cases like this, <code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code> is needed even for choices that are not about code. In my case, I habitually ponder what the essence of the information I perceive is at every moment.</p>
+
+<h2 id="8-conclusion">8. Conclusion</h2>
+
+<p>The common point shown by <code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code> in the examples we’ve looked at so far is that it focuses on ‘why’ rather than ‘what’. ‘What’ is just one of the methods to reach ‘why’. The purpose (why) doesn’t change easily, but the method (what) can change at any time depending on various situations.</p>
+
+<p>Another important reason to focus on ‘why’ is that all of the user’s thoughts cannot be organized into documents at the analysis stage. This is the same for design. At the design stage, all of the designer’s thoughts cannot be organized. This is because the code is what reflects the requirements and design to the maximum extent. There are bound to be some gaps, and those gaps are things that are thought to be known without explicitly mentioning them. The problem is that what the user considers obvious may be perceived very differently by the developer.</p>
+
+<p>However, if you think with a focus on ‘why’, you end up looking at the same place, so even if there are some gaps in communication, the deviation won’t be large. Reducing this potential difference in thoughts between users and developers is one of the important roles of <code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code> is such an obvious and fundamental concept that it’s difficult to define its scope or specific practice methods. And it’s not limited to development.</p>
+
+<p><code class="language-plaintext highlighter-rouge">EBI(Essence-Based Interpretation)</code> has a similar context to DDD(Domain-Driven Design) in that it should be based on the domain. However, DDD is a more systematic and concrete design methodology, and its main purpose is to respond to complex or frequently changing domains. On the other hand, EBI(Essence-Based Interpretation) is closer to a general way of thinking that can be applied to various fields, including software development, rather than a specific methodology.</p>
+
+<p>The change in thinking that comes from contemplating good code has a greater value than you might think. The effort towards good code leads to the contemplation of strategies to respond to unpredictable changes by gaining insight into the essence. This is a precious challenge unique to software development that cannot be easily experienced in other fields.</p>
+
+  </div><script src="https://utteranc.es/client.js"
+    repo="hunjuly/hunjuly.github.io"
+    issue-term="pathname"
+    label="comment"
+    theme="github-light"
+    crossorigin="anonymous"
+    async>
+  </script>
+
+  <a class="u-url" href="/2024/05/04/ebi.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          <li><a class="p-name" href="https://github.com/hunjuly">https://github.com/hunjuly</a></li>
+          <li><a class="u-email" href="mailto:hunjuly@gmail.com">hunjuly@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p>I cover the fundamentals of programming such as refactoring, design patterns, OOP, TDD, DDD, and architecture.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
